@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Capsule Coffee Machine Survey</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 20px;
+      background-color: #f9f9f9;
+    }
+    h1, h2, h3 {
+      color: #2c3e50;
+    }
+    .section {
+      background: white;
+      padding: 20px;
+      margin-bottom: 24px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .question {
+      margin: 16px 0;
+    }
+    label {
+      display: block;
+      margin: 8px 0;
+    }
+    input[type="text"], 
+    input[type="email"] {
+      width: 100%;
+      padding: 8px;
+      margin: 4px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button {
+      background-color: #3498db;
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 20px;
+    }
+    button:hover {
+      background-color: #2980b9;
+    }
+    .required:after {
+      content: " *";
+      color: red;
+    }
+    .note {
+      font-size: 0.9em;
+      color: #7f8c8d;
+      font-style: italic;
+    }
+    .success {
+      color: green;
+      font-weight: bold;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Capsule Coffee Machine Usage and Preference Survey</h1>
+  <p><strong>Purpose:</strong> This survey is part of a product research study to understand coffee habits and desired features for capsule coffee machines. The survey will take approximately 5–7 minutes to complete. All responses are anonymous.</p>
+
+  <form id="surveyForm">
+
+    <!-- Section 1 -->
+    <div class="section">
+      <h2>Section 1: Your Coffee Habits</h2>
+
+      <div class="question">
+        <label class="required">Q1. How many cups of coffee do you typically drink per day?</label>
+        <label><input type="radio" name="cups" value="None" required> None</label>
+        <label><input type="radio" name="cups" value="1-2 cups"> 1–2 cups</label>
+        <label><input type="radio" name="cups" value="3-4 cups"> 3–4 cups</label>
+        <label><input type="radio" name="cups" value="5 or more cups"> 5 or more cups</label>
+      </div>
+
+      <div class="question">
+        <label class="required">Q2. What types of coffee beverages do you enjoy most? (Select up to 3)</label>
+        <label><input type="checkbox" name="beverages" value="Black coffee"> Black coffee (e.g., Americano, filter)</label>
+        <label><input type="checkbox" name="beverages" value="Espresso"> Espresso</label>
+        <label><input type="checkbox" name="beverages" value="Latte"> Latte</label>
+        <label><input type="checkbox" name="beverages" value="Cappuccino"> Cappuccino</label>
+        <label><input type="checkbox" name="beverages" value="Iced coffee"> Iced coffee</label>
+        <label><input type="checkbox" name="beverages" value="Flavored coffee"> Flavored coffee (e.g., vanilla, caramel)</label>
+        <label><input type="checkbox" name="beverages" value="Other"> Other: <input type="text" id="otherBeverage" disabled></label>
+        <p class="note">Selected: <span id="beverageCount">0</span>/3</p>
+      </div>
+    </div>
+
+    <!-- Section 2 -->
+    <div class="section">
+      <h2>Section 2: Your Current Coffee Machine</h2>
+
+      <div class="question">
+        <label class="required">Q3. Do you currently own a coffee machine?</label>
+        <label><input type="radio" name="ownsMachine" value="Yes" required onchange="toggleMachineSection()"> Yes</label>
+        <label><input type="radio" name="ownsMachine" value="No" onchange="toggleMachineSection()"> No</label>
+      </div>
+
+      <div id="machineSection" style="display:none;">
+        <div class="question">
+          <label class="required">Q4. What type of coffee machine do you currently use?</label>
+          <label><input type="radio" name="machineType" value="Capsule/pod machine"> Capsule/pod coffee machine (e.g., Nespresso, Keurig)</label>
+          <label><input type="radio" name="machineType" value="Drip coffee maker"> Drip coffee maker</label>
+          <label><input type="radio" name="machineType" value="Espresso machine"> Espresso machine (manual or semi-automatic)</label>
+          <label><input type="radio" name="machineType" value="Bean-to-cup machine"> Bean-to-cup machine</label>
+          <label><input type="radio" name="machineType" value="Multi-brand compatible"> Coffee machine compatible with multiple capsule brands</label>
+          <label><input type="radio" name="machineType" value="Other"> Other: <input type="text" id="otherMachine" disabled></label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 3 -->
+    <div class="section">
+      <h2>Section 3: Desired Features in a New Capsule Coffee Machine</h2>
+
+      <div class="question">
+        <label class="required">Q5. Would you be interested in a capsule coffee machine that can make both hot and cold beverages (e.g., iced coffee, cold brew)?</label>
+        <label><input type="radio" name="interestedInCold" value="Yes" required> Yes</label>
+        <label><input type="radio" name="interestedInCold" value="No"> No</label>
+        <label><input type="radio" name="interestedInCold" value="Maybe"> Maybe, depending on the price or other features</label>
+      </div>
+
+      <div class="question">
+        <label class="required">Q6. Would you prefer a capsule coffee machine that is compatible with multiple brands of capsules (e.g., Nespresso, Dolce Gusto, Keurig, etc.)?</label>
+        <label><input type="radio" name="multiBrand" value="Yes" required> Yes, I would like a machine that works with multiple capsule brands</label>
+        <label><input type="radio" name="multiBrand" value="No"> No, I prefer to stick to one brand</label>
+        <label><input type="radio" name="multiBrand" value="Maybe"> Maybe, depending on price or convenience</label>
+      </div>
+
+      <div class="question">
+        <label class="required">Q7. How much extra would you be willing to pay for advanced smart features (e.g., app control, voice commands, automatic cleaning reminders)?</label>
+        <label><input type="radio" name="smartFeatures" value="$0" required> $0</label>
+        <label><input type="radio" name="smartFeatures" value="$10-$29"> $10 – $29</label>
+        <label><input type="radio" name="smartFeatures" value="$30-$49"> $30 – $49</label>
+        <label><input type="radio" name="smartFeatures" value="$50+">$50 or more</label>
+      </div>
+    </div>
+
+    <!-- Section 4 -->
+    <div class="section">
+      <h2>Section 4: Feature Prioritization</h2>
+      <p class="note">Please select the <strong>single most important</strong> feature in each group.</p>
+
+      <div class="question">
+        <label>Q8. Which ONE feature is most important to you in this group?</label>
+        <label><input type="radio" name="priority1" value="Adjustable brew strength" required> Adjustable brew strength</label>
+        <label><input type="radio" name="priority1" value="Adjustable temperature control"> Adjustable temperature control</label>
+        <label><input type="radio" name="priority1" value="Multiple cup size options"> Multiple cup size options</label>
+        <label><input type="radio" name="priority1" value="Programmable preferences"> Programmable preferences (e.g., save your favorite drink)</label>
+      </div>
+
+      <div class="question">
+        <label>Q9. Which ONE feature is most important to you in this group?</label>
+        <label><input type="radio" name="priority2" value="Fast heat-up time" required> Fast heat-up time (ready in under 30 seconds)</label>
+        <label><input type="radio" name="priority2" value="Automatic pod disposal"> Automatic pod disposal (ejects used capsule)</label>
+        <label><input type="radio" name="priority2" value="Large water reservoir"> Large water reservoir (less frequent refilling)</label>
+        <label><input type="radio" name="priority2" value="Adjustable spout"> Adjustable spout (fits tall travel mugs or short espresso cups)</label>
+      </div>
+
+      <div class="question">
+        <label>Q10. Which ONE feature is most important to you in this group?</label>
+        <label><input type="radio" name="priority3" value="Adjustable brew strength" required> Adjustable brew strength</label>
+        <label><input type="radio" name="priority3" value="Fast heat-up time"> Fast heat-up time</label>
+        <label><input type="radio" name="priority3" value="Large water reservoir"> Large water reservoir</label>
+        <label><input type="radio" name="priority3" value="Multiple cup size options"> Multiple cup size options</label>
+      </div>
+
+      <div class="question">
+        <label>Q11. Which ONE feature is most important to you in this group?</label>
+        <label><input type="radio" name="priority4" value="Adjustable temperature control" required> Adjustable temperature control</label>
+        <label><input type="radio" name="priority4" value="Automatic pod disposal"> Automatic pod disposal</label>
+        <label><input type="radio" name="priority4" value="Adjustable spout"> Adjustable spout</label>
+        <label><input type="radio" name="priority4" value="Programmable preferences"> Programmable / saved preferences</label>
+      </div>
+    </div>
+
+    <!-- Section 5 -->
+    <div class="section">
+      <h2>Section 5: Price Willingness</h2>
+
+      <div class="question">
+        <label class="required">Q12. How much would you be willing to spend on a new capsule coffee machine with your desired features?</label>
+        <label><input type="radio" name="priceRange" value="$100 or less" required> $100 or less</label>
+        <label><input type="radio" name="priceRange" value="$100-$199"> $100 – $199</label>
+        <label><input type="radio" name="priceRange" value="$200-$299"> $200 – $299</label>
+        <label><input type="radio" name="priceRange" value="$300-$399"> $300 – $399</label>
+        <label><input type="radio" name="priceRange" value="$400+">$400 or more</label>
+      </div>
+    </div>
+
+    <button type="submit">Submit Response</button>
+    <p id="message"></p>
+  </form>
+
+  <script>
+    // 控制其他选项输入框
+    document.querySelectorAll('input[type="checkbox"][value="Other"]').forEach(cb => {
+      cb.addEventListener('change', function() {
+        document.getElementById('otherBeverage').disabled = !this.checked;
+        if (!this.checked) document.getElementById('otherBeverage').value = '';
+      });
+    });
+
+    document.querySelectorAll('input[type="radio"][value="Other"]').forEach(rb => {
+      rb.addEventListener('change', function() {
+        const input = document.getElementById('otherMachine');
+        input.disabled = !this.checked;
+        if (!this.checked) input.value = '';
+      });
+    });
+
+    // 多选题最多选3项
+    const checkboxes = document.querySelectorAll('input[name="beverages"]');
+    const countDisplay = document.getElementById('beverageCount');
+    let checkedCount = 0;
+
+    checkboxes.forEach(box => {
+      box.addEventListener('change', function() {
+        if (this.checked) {
+          checkedCount++;
+        } else {
+          checkedCount--;
+        }
+        if (checkedCount > 3) {
+          this.checked = false;
+          checkedCount--;
+        }
+        countDisplay.textContent = Math.min(3, Array.from(checkboxes).filter(cb => cb.checked).length);
+      });
+    });
+
+    // 显示/隐藏当前咖啡机部分
+    function toggleMachineSection() {
+      const owns = document.querySelector('input[name="ownsMachine"]:checked')?.value;
+      document.getElementById('machineSection').style.display = (owns === 'Yes') ? 'block' : 'none';
+      if (owns !== 'Yes') {
+        document.querySelectorAll('#machineSection input').forEach(el => el.checked = false);
+        document.getElementById('otherMachine').value = '';
+        document.getElementById('otherMachine').disabled = true;
+      }
+    }
+
+    // 表单提交
+    document.getElementById("surveyForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const formData = new FormData(this);
+      const data = {};
+
+      // 处理所有字段
+      for (let [key, value] of formData.entries()) {
+        if (key === 'beverages' && value === 'Other') {
+          const other = document.getElementById('otherBeverage').value.trim();
+          if (other) data[key] = (data[key] || '').split(', ').concat(other).join(', ');
+          continue;
+        }
+        if (data[key]) {
+          data[key] += ', ' + value;
+        } else {
+          data[key] = value;
+        }
+      }
+
+      // 添加时间戳
+      data['Timestamp'] = new Date().toISOString();
+
+      // 提交到 Google Apps Script
+      fetch("https://script.google.com/macros/s/AKfycbyXyzrvw0clyttiZPNDMSt-AJAe_Nac3VDpizRH3n8LDteLrx7aR62ttRIFLJpoSlZY/exec", {
+        method: "POST",
+        body: JSON.stringify(data),
+        mode: "no-cors"
+      })
+      .then(() => {
+        document.getElementById("message").innerHTML = "<span class='success'>Thank you for your response!</span>";
+        document.getElementById("surveyForm").reset();
+        countDisplay.textContent = "0";
+      })
+      .catch(err => {
+        document.getElementById("message").innerHTML = "<span class='error'>Error submitting form. Please try again.</span>";
+        console.error("Submission error:", err);
+      });
+    });
+  </script>
+</body>
+</html>
